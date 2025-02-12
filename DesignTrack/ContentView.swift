@@ -10,46 +10,83 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Query var projetos: [ProjectModel]
+    
+    @StateObject var projectVM = ProjectViewModel()
+    @State var showAddProjectSheet = false
+    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
+    @State private var showDeleteAlert = false
+    @State private var projectToDelete: ProjectModel?
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        
+        NavigationStack {
+            VStack(spacing: 20) {
+                if projetos.isEmpty {
+                    Text("Você não está trabalhando em nenhum projeto. Que tal começar um novo?")
+                        .foregroundStyle(.gray)
+                        .padding(.horizontal, 30)
+                        .multilineTextAlignment(.center)
+
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(projetos) { project in
+                                NavigationLink(destination: ProjectView(projectVM: projectVM, currentProject: project)) {
+                                    VStack {
+                                        if let imageData = project.image,
+                                           let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 150, height: 150)
+                                                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+                                                .clipped()
+                                        } else {
+                                            Image("DefaultImage")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 150, height: 150)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
+                                        Text(project.name ?? "Sem Nome")
+                                            .bold()
+                                    }
+                                    .padding()
+                                }
+                                .contextMenu {
+                                    Button(role: .destructive) {
+                                        projectToDelete = project
+                                        showDeleteAlert = true
+                                    } label: {
+                                        Label("Excluir", systemImage: "trash")
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            .navigationTitle("Projetos")
+            .alert("Deletar Projeto", isPresented: $showDeleteAlert) {
+                Button("Cancelar", role: .cancel) {}
+                Button("Deletar", role: .destructive) {
+                    if let projectToDelete = projectToDelete {
+                        projectVM.deleteProject(project: projectToDelete, modelContext: modelContext)
                     }
                 }
-                .onDelete(perform: deleteItems)
+            } message: {
+                Text("Tem certeza que deseja deletar este projeto?")
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                Button("Criar projeto") {
+                    showAddProjectSheet.toggle()
                 }
             }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            .sheet(isPresented: $showAddProjectSheet) {
+                AddProjectView(projectVM: projectVM)
             }
         }
     }
@@ -57,5 +94,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: ProjectModel.self, inMemory: true)
 }
