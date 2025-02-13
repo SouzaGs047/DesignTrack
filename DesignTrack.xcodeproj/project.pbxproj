@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E4E10B42D5E639B007B2219 /* UserTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E10B32D5E639B007B2219 /* UserTermView.swift */; };
+		2E6C69B12D5E744900A15BF1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6C69B02D5E744900A15BF1 /* SplashScreenView.swift */; };
 		AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */; };
 		AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */; };
 		AE5B3DED2D5BE6C1000496F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5B3DEC2D5BE6C1000496F7 /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E4E10B32D5E639B007B2219 /* UserTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTermView.swift; sourceTree = "<group>"; };
+		2E6C69B02D5E744900A15BF1 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		AE5B3DE32D5BE6C1000496F7 /* DesignTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTrackApp.swift; sourceTree = "<group>"; };
 		AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				AE5B3E132D5D2064000496F7 /* EditProjectView.swift */,
 				AE5B3E152D5D3B2A000496F7 /* BrandingView.swift */,
 				AE5B3E172D5D3B9C000496F7 /* ColorPickerView.swift */,
+				2E4E10B32D5E639B007B2219 /* UserTermView.swift */,
+				2E6C69B02D5E744900A15BF1 /* SplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E6C69B12D5E744900A15BF1 /* SplashScreenView.swift in Sources */,
 				AE5B3E122D5D1AF3000496F7 /* AddProjectView.swift in Sources */,
 				AE5B3E022D5BE851000496F7 /* LogImageModel.swift in Sources */,
 				AE5B3E1A2D5D3C5B000496F7 /* ColorViewModel.swift in Sources */,
@@ -223,6 +230,7 @@
 				AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */,
 				AE5B3E182D5D3B9C000496F7 /* ColorPickerView.swift in Sources */,
 				AE5B3E142D5D2064000496F7 /* EditProjectView.swift in Sources */,
+				2E4E10B42D5E639B007B2219 /* UserTermView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

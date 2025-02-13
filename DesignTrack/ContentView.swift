@@ -28,7 +28,7 @@ struct ContentView: View {
                         .foregroundStyle(.gray)
                         .padding(.horizontal, 30)
                         .multilineTextAlignment(.center)
-
+                    
                 } else {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
@@ -66,7 +66,7 @@ struct ContentView: View {
                             }
                         }
                     }
-
+                    
                 }
             }
             .navigationTitle("Projetos")
@@ -81,9 +81,18 @@ struct ContentView: View {
                 Text("Tem certeza que deseja deletar este projeto?")
             }
             .toolbar {
-                Button("Criar projeto") {
-                    showAddProjectSheet.toggle()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    TermsButton()
+                        .padding(.trailing, 100.0)
                 }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Criar projeto") {
+                        showAddProjectSheet.toggle()
+                    }
+                }
+                
+                
             }
             .sheet(isPresented: $showAddProjectSheet) {
                 AddProjectView(projectVM: projectVM)
