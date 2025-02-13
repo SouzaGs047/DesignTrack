@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  DesignTrack
+//  ContentView
 //
 //  Created by GUSTAVO SOUZA SANTANA on 11/02/25.
 //
@@ -18,9 +18,9 @@ struct ContentView: View {
     
     @State private var showDeleteAlert = false
     @State private var projectToDelete: ProjectModel?
+    @State private var projectToEdit: ProjectModel?
     
     var body: some View {
-        
         NavigationStack {
             VStack(spacing: 20) {
                 if projetos.isEmpty {
@@ -62,11 +62,16 @@ struct ContentView: View {
                                     } label: {
                                         Label("Excluir", systemImage: "trash")
                                     }
+                                    Button {
+                                        projectToEdit = project
+                                    } label: {
+                                        Label("Renomear", systemImage: "pencil")
+                                    }
+                                    .tint(.gray)
                                 }
                             }
                         }
                     }
-                    
                 }
             }
             .navigationTitle("Projetos")
@@ -91,11 +96,16 @@ struct ContentView: View {
                         showAddProjectSheet.toggle()
                     }
                 }
-                
-                
             }
             .sheet(isPresented: $showAddProjectSheet) {
                 AddProjectView(projectVM: projectVM)
+                    .presentationDetents([.height(200)])
+
+            }
+            .sheet(item: $projectToEdit) { project in
+                EditNomeProjectView(projectVM: projectVM, project: project)
+                    .presentationDetents([.height(200)])
+
             }
         }
     }
