@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4966557B2D5E7AF900F1C218 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4966557A2D5E7AF900F1C218 /* SplashScreenView.swift */; };
 		AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */; };
 		AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */; };
 		AE5B3DED2D5BE6C1000496F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5B3DEC2D5BE6C1000496F7 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4966557A2D5E7AF900F1C218 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		AE5B3DE32D5BE6C1000496F7 /* DesignTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTrackApp.swift; sourceTree = "<group>"; };
 		AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				AE5B3E112D5D1AF3000496F7 /* AddProjectView.swift */,
 				AE5B3E132D5D2064000496F7 /* EditProjectView.swift */,
 				AE5B3E152D5D3B2A000496F7 /* BrandingView.swift */,
+				4966557A2D5E7AF900F1C218 /* SplashScreenView.swift */,
 				AE5B3E172D5D3B9C000496F7 /* ColorPickerView.swift */,
 			);
 			path = Views;
@@ -215,6 +218,7 @@
 				AE5B3E082D5BE8B4000496F7 /* ProjectModel.swift in Sources */,
 				AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */,
 				AE5B3E0E2D5D11F2000496F7 /* ProjectViewModel.swift in Sources */,
+				4966557B2D5E7AF900F1C218 /* SplashScreenView.swift in Sources */,
 				AE5B3E062D5BE89E000496F7 /* LogModel.swift in Sources */,
 				AE5B3E102D5D1A2A000496F7 /* ProjectView.swift in Sources */,
 				AE5B3E0A2D5BE8CC000496F7 /* ColorModel.swift in Sources */,
