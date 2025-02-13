@@ -13,7 +13,7 @@ struct AddProjectView: View {
     
     @State var nameProjectTextField: String = ""
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss //Teste
     
     var body: some View {
         VStack(spacing: 10) {
