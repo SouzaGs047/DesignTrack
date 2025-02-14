@@ -155,6 +155,8 @@ struct AddLogView: View {
                     dismiss()
                 }
                 .foregroundStyle(.accent)
+                .bold()
+
             }
         }
     }

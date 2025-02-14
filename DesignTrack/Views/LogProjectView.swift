@@ -105,6 +105,8 @@ struct LogProjectView: View {
         .toolbar {
             NavigationLink(destination: AddLogView(currentProject: currentProject)) {
                 Text("Anotar")
+                    .bold()
+
             }
         }
     }

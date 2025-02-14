@@ -95,6 +95,7 @@ struct ContentView: View {
                     Button("Criar projeto") {
                         showAddProjectSheet.toggle()
                     }
+                    .bold()
                 }
             }
             .sheet(isPresented: $showAddProjectSheet) {
