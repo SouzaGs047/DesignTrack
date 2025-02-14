@@ -10,8 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query var projetos: [ProjectModel]
-    
+    @Query(sort: \ProjectModel.startDate, order: .reverse) var projetos: [ProjectModel]
     @StateObject var projectVM = ProjectViewModel()
     @State var showAddProjectSheet = false
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
