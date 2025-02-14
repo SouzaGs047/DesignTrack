@@ -162,6 +162,7 @@ struct EditProjectView: View {
             }
             .padding()
         }
+        .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.never)
         .onAppear {
             projectVM.type = currentProject.type ?? ""

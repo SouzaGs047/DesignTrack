@@ -32,6 +32,7 @@ struct AddProjectView: View {
                 
                 
                 
+                
                 if characterLimitExceeded {
                     Text("Você atingiu o máximo de caracteres (20)")
                         .foregroundColor(.red)
@@ -41,6 +42,7 @@ struct AddProjectView: View {
                 }
             }
             .padding(.horizontal)
+            
             
             Button(action: {
                 if nameProjectTextField.count > 20 {
