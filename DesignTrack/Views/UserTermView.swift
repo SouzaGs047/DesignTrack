@@ -22,8 +22,8 @@ struct TermsSheetView: View {
     
     // Estados para controlar a expansão dos DisclosureGroups
     @State private var toggleStates = ToggleStates()
-    @State private var termsExpanded: Bool = true
-    @State private var privacyExpanded: Bool = true
+    @State private var termsExpanded: Bool = false
+    @State private var privacyExpanded: Bool = false
     
     var body: some View {
         NavigationView {
