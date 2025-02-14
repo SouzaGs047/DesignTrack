@@ -12,7 +12,7 @@ import SwiftData
 struct DesignTrackApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            ContentView()
                 .modelContainer(for: [ProjectModel.self,
                                       LogModel.self,
                                       LogImageModel.self,
