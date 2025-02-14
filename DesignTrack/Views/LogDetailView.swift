@@ -40,7 +40,9 @@ struct LogDetailView: View {
                         Text(logVM.title)
                             .foregroundStyle(.accent)
                         Spacer()
-                        Image(systemName: "chevron.down").foregroundStyle(.primary)
+                        if isEditing {
+                            Image(systemName: "chevron.down").foregroundStyle(.primary)
+                        }
                     }
                     .padding()
                     .background(
