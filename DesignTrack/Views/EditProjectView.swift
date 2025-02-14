@@ -61,12 +61,11 @@ struct EditProjectView: View {
                     Text("Tipo")
                         .foregroundStyle(.accent)
                         .bold()
-                        .padding(.horizontal)
+                        .padding()
                     
                     Spacer()
                     
                     if isEditing {
-                        // Mostra o seletor de tipo apenas no modo de edição
                         Menu {
                             ForEach(projectTypes, id: \.self) { type in
                                 Button(action: { projectVM.type = type }) {
@@ -82,32 +81,33 @@ struct EditProjectView: View {
                             .padding()
                         }
                     } else {
-                        // No modo de visualização, mostra apenas o tipo selecionado (ou nada, se não houver)
                         Text(projectVM.type.isEmpty ? "" : projectVM.type)
                             .foregroundColor(.primary)
                             .padding()
                     }
                 }
+                
                 .background(RoundedRectangle(cornerRadius: 15).stroke(.gray, lineWidth: 1))
                 
                 VStack(alignment: .leading) {
                     Text("Objetivo")
-                        .padding(.top, 12)
+                        .padding(.top)
                         .padding(.horizontal)
                         .foregroundStyle(.accent)
                         .bold()
                     
                     TextEditor(text: $projectVM.objective)
                         .frame(height: 100)
-                        .padding(8)
+                        .padding(.bottom)
+                        .padding(.horizontal)
                         .scrollContentBackground(.hidden)
                         .disabled(!isEditing)
                 }
                 .background(RoundedRectangle(cornerRadius: 15).stroke(.gray, lineWidth: 1))
                 
                 HStack(spacing: 40) {
-                    VStack(alignment: .leading) {
-                        Text("  Data de início")
+                    VStack {
+                        Text("Data de início")
                             .foregroundStyle(.accent)
                         
                         DatePicker("", selection: $projectVM.startDate, displayedComponents: .date)
@@ -116,8 +116,8 @@ struct EditProjectView: View {
                     }
                     
                     
-                    VStack(alignment: .leading) {
-                        Text("    Prazo Final")
+                    VStack {
+                        Text("Prazo Final")
                             .foregroundStyle(.accent)
                         
                         DatePicker("", selection: $projectVM.finalDate, displayedComponents: .date)
@@ -128,7 +128,7 @@ struct EditProjectView: View {
                 
                 
                 DisclosureGroup("Configurações de Branding", isExpanded: $isBrandingExpanded) {
-                    BrandingView(currentProject: currentProject)
+                    BrandingView(currentProject: currentProject, isEditing: $isEditing)
                 }
                 .foregroundStyle(.primary)
                 .padding()
@@ -142,7 +142,7 @@ struct EditProjectView: View {
                     }, label: {
                         HStack {
                             Image(systemName: "trash")
-                            Text("Apagar projeto")
+                            Text("Deletar projeto")
                             Spacer()
                         }
                         .foregroundStyle(.red)
@@ -151,17 +151,18 @@ struct EditProjectView: View {
                     .background(RoundedRectangle(cornerRadius: 15).stroke(.red, lineWidth: 1))
                     .alert("Deletar Projeto", isPresented: $showDeleteConfirmation) {
                         Button("Cancelar", role: .cancel) {}
-                        Button("Apagar", role: .destructive) {
+                        Button("Deletar", role: .destructive) {
                             projectVM.deleteProject(project: currentProject, modelContext: modelContext)
                             dismiss()
                         }
                     } message: {
-                        Text("Tem certeza que deseja apagar este projeto? Esta ação não poderá ser desfeita.")
+                        Text("Tem certeza que deseja deletar este projeto? Esta ação não poderá ser desfeita.")
                     }
                 }
             }
             .padding()
         }
+        .scrollIndicators(.never)
         .onAppear {
             projectVM.type = currentProject.type ?? ""
             projectVM.objective = currentProject.objective ?? ""

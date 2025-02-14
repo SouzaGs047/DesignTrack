@@ -67,12 +67,13 @@ struct AddLogView: View {
             VStack {
                 ZStack(alignment: .topLeading) {
                     TextEditor(text: $textContentLog)
-                        .foregroundColor(Color(.white))
+                        .foregroundStyle(.white)
                         .padding(8)
                         .multilineTextAlignment(.leading)
                     if textContentLog.isEmpty {
                         Text("Clique aqui para digitar")
-                            .foregroundColor(.gray)
+                            .italic()
+                            .foregroundColor(.white)
                             .padding(.vertical, 16)
                             .padding(.horizontal, 11)
                     }
@@ -81,7 +82,8 @@ struct AddLogView: View {
                 .scrollContentBackground(.hidden)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(.rosaPreto)
+                        .fill(.accent)
+                        .opacity(0.8)
                 )
                 .padding(.horizontal)
                 

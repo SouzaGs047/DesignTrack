@@ -92,7 +92,7 @@ struct LogProjectView: View {
             }
             .listStyle(.plain)
         }
-        .alert("Deletar Log", isPresented: $showDeleteAlert) {
+        .alert("Deletar Anotação", isPresented: $showDeleteAlert) {
             Button("Cancelar", role: .cancel) { }
             Button("Deletar", role: .destructive) {
                 if let logToDelete = logToDelete {
@@ -100,11 +100,11 @@ struct LogProjectView: View {
                 }
             }
         } message: {
-            Text("Tem certeza que deseja deletar este log?")
+            Text("Tem certeza que deseja deletar esta anotação?")
         }
         .toolbar {
             NavigationLink(destination: AddLogView(currentProject: currentProject)) {
-                Text("Adicionar Log")
+                Text("Anotar")
             }
         }
     }

@@ -15,6 +15,8 @@ struct FontPickerView: View {
     
     @ObservedObject var fontVM: FontViewModel
     
+    @Binding var isEditing: Bool
+    
     @State private var fontName = ""
     @State private var selectedCategory: String? = nil
 
@@ -29,52 +31,55 @@ struct FontPickerView: View {
                     .bold()
                     .foregroundStyle(Color.accent)
                 Spacer()
-                Button("Adicionar") {
-                    if !fontName.isEmpty, let category = selectedCategory {
-                        withAnimation {
-                            fontVM.addFont(nameFont: fontName, category: category, project: currentProject, modelContext: modelContext)
-                        }
-                        fontName = ""
-                        selectedCategory = nil
-                    }
-                }
-                .disabled(selectedCategory == nil)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
-                .background(Color(red: 0.8, green: 0, blue: 0.3))
-                .foregroundStyle(.white)
-                .cornerRadius(8)
-            }
-
-            HStack {
-                TextField("Nome da fonte", text: $fontName)
-                    .frame(width: 200, height: 50)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                Spacer()
-
-                Menu {
-                    ForEach(categories, id: \.self) { category in
-                        Button(action: {
-                            selectedCategory = category
-                        }) {
-                            Text(category)
+                if isEditing {
+                    Button("Adicionar") {
+                        if !fontName.isEmpty, let category = selectedCategory {
+                            withAnimation {
+                                fontVM.addFont(nameFont: fontName, category: category, project: currentProject, modelContext: modelContext)
+                            }
+                            fontName = ""
+                            selectedCategory = nil
                         }
                     }
-                } label: {
-                    HStack {
-                        Text(selectedCategory ?? "Selecione")
-                            .foregroundColor(selectedCategory == nil ? .gray : .primary)
-                        Image(systemName: "chevron.down")
-                    }
-                    .padding(8)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(.linha, lineWidth: 1)
-                    )
+                    .disabled(selectedCategory == nil)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                    .background(Color(red: 0.8, green: 0, blue: 0.3))
+                    .foregroundStyle(.white)
+                    .cornerRadius(8)
                 }
             }
-
+            
+            if isEditing {
+                HStack {
+                    TextField("Nome da fonte", text: $fontName)
+                        .frame(width: 200, height: 50)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Spacer()
+                    
+                    Menu {
+                        ForEach(categories, id: \.self) { category in
+                            Button(action: {
+                                selectedCategory = category
+                            }) {
+                                Text(category)
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Text(selectedCategory ?? "Selecione")
+                                .foregroundColor(selectedCategory == nil ? .gray : .primary)
+                            Image(systemName: "chevron.down")
+                        }
+                        .padding(8)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(.linha, lineWidth: 1)
+                        )
+                    }
+                }
+            }
             if fonts.isEmpty {
                 Text("Nenhuma fonte adicionada ainda.")
                     .foregroundStyle(.gray)

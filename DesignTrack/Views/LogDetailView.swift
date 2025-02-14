@@ -100,27 +100,27 @@ struct LogDetailView: View {
                     }, label: {
                         HStack {
                             Image(systemName: "trash")
-                            Text("Apagar projeto")
+                            Text("Deletar Anotação")
                             Spacer()
                         }
                         .foregroundStyle(.red)
                     })
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 15).stroke(.red, lineWidth: 1))
-                    .alert("Confirmar Exclusão", isPresented: $showDeleteConfirmation) {
+                    .alert("Deletar Anotação", isPresented: $showDeleteConfirmation) {
                         Button("Cancelar", role: .cancel) {}
-                        Button("Apagar", role: .destructive) {
+                        Button("Deletar", role: .destructive) {
                             logVM.deleteLog(log: log, modelContext: modelContext)
                             dismiss()
                         }
                     } message: {
-                        Text("Tem certeza que deseja apagar este projeto? Esta ação não poderá ser desfeita.")
+                        Text("Tem certeza que deseja deletar esta anotação? Esta ação não poderá ser desfeita.")
                     }
                 }
                 .padding()
             }
         }
-        .navigationTitle("Log")
+        .navigationTitle("Anotação")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button(action: {

@@ -14,8 +14,13 @@ struct ColorPickerView: View {
     var currentProject: ProjectModel
     
     @ObservedObject var colorVM: ColorViewModel
+    
+    @Binding var isEditing: Bool
+    
     @State private var selectedColor = Color.blue
 
+    
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -29,23 +34,27 @@ struct ColorPickerView: View {
             
             
                 Spacer()
+                if isEditing {
                 ColorPicker("", selection: $selectedColor)
                     .labelsHidden()
                 
-                Button("Adicionar") {
-                    if let hex = selectedColor.toHex() {
-                        withAnimation {
-                            colorVM.addColor(hex: hex, project: currentProject, modelContext: modelContext)
+                
+                    Button("Adicionar") {
+                        if let hex = selectedColor.toHex() {
+                            withAnimation {
+                                colorVM.addColor(hex: hex, project: currentProject, modelContext: modelContext)
+                            }
                         }
                     }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                    .background(Color(red: 0.8, green: 0, blue: 0.3))
+                    .foregroundStyle(.white)
+                    .cornerRadius(8)
+                    .accessibilityLabel("Botão para adicionar uma nova cor")
                 }
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
-                .background(Color(red: 0.8, green: 0, blue: 0.3))
-                .foregroundStyle(.white)
-                .cornerRadius(8)
-                .accessibilityLabel("Botão para adicionar uma nova cor")
-            }.padding(.top,15)
+            }
+            .padding(.top,15)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
