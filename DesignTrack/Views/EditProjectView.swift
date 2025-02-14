@@ -14,12 +14,14 @@ struct EditProjectView: View {
     @StateObject private var projectVM = ProjectViewModel()
     var currentProject: ProjectModel
     
-    // Estados para manipular a seleção de imagem usando PhotosPicker
     @State private var selectedImages: [UIImage] = []
     @State private var selectedItems: [PhotosPickerItem] = []
     
     @State private var isEditing = false
     @State private var isBrandingExpanded = false
+    
+    @State private var showDeleteConfirmation = false
+    @Environment(\.dismiss) private var dismiss
     
     private let projectTypes = [
         "UX/UI Design",
@@ -34,17 +36,15 @@ struct EditProjectView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // Utiliza o PhotosPicker diretamente para selecionar a imagem
                 PhotosPicker(
                     selection: $selectedItems,
-                    maxSelectionCount: 1,    // Se deseja apenas uma imagem, ou 0 para ilimitado
+                    maxSelectionCount: 1,
                     matching: .images
                 ) {
                     ImageView(selectedImages: $selectedImages)
                 }
                 .disabled(!isEditing)
                 .onChange(of: selectedItems) { newItems in
-                    // Se desejar substituir a imagem atual, limpe as anteriores:
                     selectedImages.removeAll()
                     for item in newItems {
                         Task {
@@ -58,7 +58,6 @@ struct EditProjectView: View {
                     }
                 }
                 
-                // Seleção de Tipo
                 HStack {
                     Text("Tipo")
                         .foregroundStyle(.accent)
@@ -85,10 +84,9 @@ struct EditProjectView: View {
                 }
                 .background(RoundedRectangle(cornerRadius: 15).stroke(.gray, lineWidth: 1))
                 
-                // Campo Objetivo
                 VStack(alignment: .leading) {
                     Text("Objetivo")
-                        .padding(.top, 5)
+                        .padding(.top, 12)
                         .padding(.horizontal)
                         .foregroundStyle(.accent)
                         .bold()
@@ -101,22 +99,21 @@ struct EditProjectView: View {
                 }
                 .background(RoundedRectangle(cornerRadius: 15).stroke(.gray, lineWidth: 1))
                 
-                // Campos de Data
-                HStack(spacing: 20) {
+                HStack(spacing: 40) {
                     VStack(alignment: .leading) {
-                        Text("Data de início")
+                        Text("  Data de início")
                             .foregroundStyle(.accent)
-
+                        
                         DatePicker("", selection: $projectVM.startDate, displayedComponents: .date)
                             .disabled(!isEditing)
                             .labelsHidden()
                     }
-
+                    
                     
                     VStack(alignment: .leading) {
-                        Text("Prazo Final")
+                        Text("    Prazo Final")
                             .foregroundStyle(.accent)
-
+                        
                         DatePicker("", selection: $projectVM.finalDate, displayedComponents: .date)
                             .disabled(!isEditing)
                             .labelsHidden()
@@ -124,37 +121,38 @@ struct EditProjectView: View {
                 }
                 
                 
-                VStack{
-                    Button( action : {
-                        withAnimation(.easeInOut){
-                            isBrandingExpanded.toggle()
-                        }
-                    }){
-                        HStack{
-                            Text("Configurações de Branding")
-                                .font(.system(size: 18))
-                                .foregroundColor(.white)
+                DisclosureGroup("Configurações de Branding", isExpanded: $isBrandingExpanded) {
+                    BrandingView(currentProject: currentProject)
+                }
+                .foregroundStyle(.primary)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+                .animation(.easeInOut, value: isBrandingExpanded)
+                
+                if isEditing {
+                    Button(action: {
+                        showDeleteConfirmation = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Apagar projeto")
                             Spacer()
-                            Image(systemName: isBrandingExpanded ? "chevron.up" : "chevron.down")
-                                .foregroundColor(.white)
                         }
-                        .padding()
-                        .background(Color.pink)
-                        .cornerRadius(15)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    if isBrandingExpanded{
-                        BrandingView(currentProject: currentProject)
-                        //Colocar a BrandingView
-//                        .padding()
-//                        .background(Color.gray.opacity(0.1))
-//                        .cornerRadius(10)
+                        .foregroundStyle(.red)
+                    })
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 15).stroke(.red, lineWidth: 1))
+                    .alert("Deletar Projeto", isPresented: $showDeleteConfirmation) {
+                        Button("Cancelar", role: .cancel) {}
+                        Button("Apagar", role: .destructive) {
+                            projectVM.deleteProject(project: currentProject, modelContext: modelContext)
+                            dismiss()
+                        }
+                    } message: {
+                        Text("Tem certeza que deseja apagar este projeto? Esta ação não poderá ser desfeita.")
                     }
                 }
-                
-                Button(action: {projectVM.deleteProject(project: currentProject, modelContext: modelContext)}, label: { Text("Apagar projeto")
-                })
             }
             .padding()
         }
@@ -171,10 +169,9 @@ struct EditProjectView: View {
         }
         .navigationBarItems(trailing: Button(action: {
             if isEditing {
-                // Ao clicar em "Salvar", converte a imagem e atualiza o projeto
                 var imageData: Data? = nil
                 if let firstImage = selectedImages.first {
-                    imageData = firstImage.jpegData(compressionQuality: 1.0)
+                    imageData = firstImage.jpegData(compressionQuality: 0.0)
                 }
                 
                 projectVM.updateProject(
@@ -187,7 +184,6 @@ struct EditProjectView: View {
                     modelContext: modelContext
                 )
             }
-            // Alterna entre os modos "Editar" e "Visualizar"
             isEditing.toggle()
         }) {
             Text(isEditing ? "Salvar" : "Editar")

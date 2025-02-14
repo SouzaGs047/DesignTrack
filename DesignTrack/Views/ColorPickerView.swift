@@ -21,13 +21,13 @@ struct ColorPickerView: View {
             HStack {
                 Text("Cores")
                     .font(.headline)
+                    .padding(.top,2)
                     .bold()
                     .foregroundStyle(Color.accent)
                     .accessibilityLabel("Título: Cores")
-            }
             
-            HStack {
-                
+            
+            
                 Spacer()
                 ColorPicker("", selection: $selectedColor)
                     .labelsHidden()
@@ -45,7 +45,7 @@ struct ColorPickerView: View {
                 .foregroundStyle(.white)
                 .cornerRadius(8)
                 .accessibilityLabel("Botão para adicionar uma nova cor")
-            }
+            }.padding(.top,15)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
@@ -56,13 +56,13 @@ struct ColorPickerView: View {
                             .accessibilityLabel("Aviso: Nenhuma cor adicionada ainda")
                     } else {
                         ForEach(colors) { color in
-//                            if let hex = color.hex, let _ = Color(hex: hex) {
-//                                //CardView(ColorModel: ColorModel, viewModel: viewModel)
-//                            }
+                            
+                            ColorCardView(color: color, colorVM: colorVM)
+                            
                         }
                     }
                 }
-                .padding(.horizontal)
+                
             }
             .padding(.top, 5)
         }

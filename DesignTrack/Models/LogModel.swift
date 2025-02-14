@@ -11,17 +11,17 @@ import SwiftData
 @Model
 public class LogModel {
     var date: Date
-    var title: String?
+    var title: String
     var textContent: String?
     
-    @Relationship(deleteRule: .cascade, inverse: \LogImageModel.log)
+    @Relationship(deleteRule: .cascade)
     var images: [LogImageModel] = []
     
     var project: ProjectModel
     
-    public init(date: Date, title: String? = nil, textContent: String? = nil,
+    public init(title: String, textContent: String? = nil,
                 project: ProjectModel) {
-        self.date = date
+        self.date = Date()
         self.title = title
         self.textContent = textContent
         self.project = project

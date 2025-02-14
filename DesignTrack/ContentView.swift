@@ -78,7 +78,7 @@ struct ContentView: View {
                     }
                 }
             } message: {
-                Text("Tem certeza que deseja deletar este projeto?")
+                Text("Tem certeza que deseja apagar este projeto? Esta ação não poderá ser desfeita.")
             }
             .toolbar {
                 Button("Criar projeto") {

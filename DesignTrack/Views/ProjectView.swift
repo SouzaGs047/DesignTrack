@@ -17,7 +17,7 @@ struct ProjectView: View {
     var body: some View {
         VStack(spacing: 16) {
             Picker("", selection: $selectedTab) {
-                Text("Logs").tag(1)
+                Text("Anotações").tag(1)
                 Text("Projeto").tag(2)
             }
             .pickerStyle(.segmented)
@@ -27,7 +27,7 @@ struct ProjectView: View {
             }
             
             if selectedTab == 1 {
-                //LogProjectView(currentProject: currentProject)
+                LogProjectView(currentProject: currentProject)
             } else {
                 EditProjectView(currentProject: currentProject)
             }

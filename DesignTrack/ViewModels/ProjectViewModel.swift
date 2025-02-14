@@ -10,13 +10,12 @@ import SwiftData
 
 
 class ProjectViewModel: ObservableObject {
+    
         @Published var type: String = ""
         @Published var objective: String = ""
         @Published var startDate: Date = Date()
         @Published var finalDate: Date = Date()
         
-    
-    
     func addProject(name: String, modelContext: ModelContext) {
         let newProject = ProjectModel()
         newProject.name = name

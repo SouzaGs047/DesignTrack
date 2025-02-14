@@ -13,13 +13,14 @@ import SwiftData
 struct BrandingView: View {
     var currentProject: ProjectModel
     @StateObject private var colorVM = ColorViewModel()
-    //@StateObject private var fontViewModel: FontViewModel
+    @StateObject private var fontVM = FontViewModel()
     
     var body: some View {
         VStack {
             ColorPickerView(currentProject: currentProject, colorVM: colorVM)
-            Divider()
-            //FontPickerView(viewModel: fontViewModel)
+            Divider().padding(.top,10)
+                .padding(.bottom,10)
+            FontPickerView(currentProject: currentProject, fontVM: fontVM)
             
         }
     }

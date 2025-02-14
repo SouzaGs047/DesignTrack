@@ -20,10 +20,10 @@ public class ProjectModel {
     @Relationship(deleteRule: .cascade)
     var brandingColors: [ColorModel] = []
     
-    @Relationship(deleteRule: .cascade, inverse: \FontModel.project)
+    @Relationship(deleteRule: .cascade)
     var brandingFonts: [FontModel] = []
     
-    @Relationship(deleteRule: .cascade, inverse: \LogModel.project)
+    @Relationship(deleteRule: .cascade)
     var logs: [LogModel] = []
     
     public init(name: String? = nil, image: Data? = nil, type: String? = nil,

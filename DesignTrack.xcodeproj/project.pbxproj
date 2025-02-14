@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE4DE9342D5E61D60002C601 /* ColorCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE9332D5E61D60002C601 /* ColorCardView.swift */; };
+		AE4DE9362D5E66AC0002C601 /* FontViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE9352D5E66AC0002C601 /* FontViewModel.swift */; };
+		AE4DE9382D5E68280002C601 /* FontPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE9372D5E68280002C601 /* FontPickerView.swift */; };
+		AE4DE93A2D5E6E870002C601 /* LogProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE9392D5E6E870002C601 /* LogProjectView.swift */; };
+		AE4DE93C2D5E6F1C0002C601 /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE93B2D5E6F1C0002C601 /* LogViewModel.swift */; };
+		AE4DE93E2D5E74720002C601 /* AddLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE93D2D5E74720002C601 /* AddLogView.swift */; };
+		AE4DE9402D5E8AFB0002C601 /* LogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */; };
 		AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */; };
 		AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */; };
 		AE5B3DED2D5BE6C1000496F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5B3DEC2D5BE6C1000496F7 /* Assets.xcassets */; };
@@ -27,6 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE4DE9332D5E61D60002C601 /* ColorCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCardView.swift; sourceTree = "<group>"; };
+		AE4DE9352D5E66AC0002C601 /* FontViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontViewModel.swift; sourceTree = "<group>"; };
+		AE4DE9372D5E68280002C601 /* FontPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerView.swift; sourceTree = "<group>"; };
+		AE4DE9392D5E6E870002C601 /* LogProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProjectView.swift; sourceTree = "<group>"; };
+		AE4DE93B2D5E6F1C0002C601 /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
+		AE4DE93D2D5E74720002C601 /* AddLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLogView.swift; sourceTree = "<group>"; };
+		AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetailView.swift; sourceTree = "<group>"; };
 		AE5B3DE32D5BE6C1000496F7 /* DesignTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTrackApp.swift; sourceTree = "<group>"; };
 		AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +128,8 @@
 			children = (
 				AE5B3E0D2D5D11F2000496F7 /* ProjectViewModel.swift */,
 				AE5B3E192D5D3C5B000496F7 /* ColorViewModel.swift */,
+				AE4DE9352D5E66AC0002C601 /* FontViewModel.swift */,
+				AE4DE93B2D5E6F1C0002C601 /* LogViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -126,6 +142,11 @@
 				AE5B3E132D5D2064000496F7 /* EditProjectView.swift */,
 				AE5B3E152D5D3B2A000496F7 /* BrandingView.swift */,
 				AE5B3E172D5D3B9C000496F7 /* ColorPickerView.swift */,
+				AE4DE9332D5E61D60002C601 /* ColorCardView.swift */,
+				AE4DE9372D5E68280002C601 /* FontPickerView.swift */,
+				AE4DE9392D5E6E870002C601 /* LogProjectView.swift */,
+				AE4DE93D2D5E74720002C601 /* AddLogView.swift */,
+				AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,15 +231,22 @@
 			files = (
 				AE5B3E122D5D1AF3000496F7 /* AddProjectView.swift in Sources */,
 				AE5B3E022D5BE851000496F7 /* LogImageModel.swift in Sources */,
+				AE4DE9402D5E8AFB0002C601 /* LogDetailView.swift in Sources */,
+				AE4DE9342D5E61D60002C601 /* ColorCardView.swift in Sources */,
 				AE5B3E1A2D5D3C5B000496F7 /* ColorViewModel.swift in Sources */,
 				AE5B3E042D5BE884000496F7 /* FontModel.swift in Sources */,
 				AE5B3E082D5BE8B4000496F7 /* ProjectModel.swift in Sources */,
 				AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */,
 				AE5B3E0E2D5D11F2000496F7 /* ProjectViewModel.swift in Sources */,
 				AE5B3E062D5BE89E000496F7 /* LogModel.swift in Sources */,
+				AE4DE9382D5E68280002C601 /* FontPickerView.swift in Sources */,
+				AE4DE9362D5E66AC0002C601 /* FontViewModel.swift in Sources */,
+				AE4DE93C2D5E6F1C0002C601 /* LogViewModel.swift in Sources */,
 				AE5B3E102D5D1A2A000496F7 /* ProjectView.swift in Sources */,
 				AE5B3E0A2D5BE8CC000496F7 /* ColorModel.swift in Sources */,
+				AE4DE93A2D5E6E870002C601 /* LogProjectView.swift in Sources */,
 				AE5B3E162D5D3B2A000496F7 /* BrandingView.swift in Sources */,
+				AE4DE93E2D5E74720002C601 /* AddLogView.swift in Sources */,
 				AE5B3E1D2D5D40E5000496F7 /* ColorExtensions.swift in Sources */,
 				AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */,
 				AE5B3E182D5D3B9C000496F7 /* ColorPickerView.swift in Sources */,
