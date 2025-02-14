@@ -1,17 +1,27 @@
 import SwiftUI
 
-struct AddProjectView: View {
+struct EditNomeProjectView: View {
     @Environment(\.modelContext) private var modelContext
     @ObservedObject var projectVM: ProjectViewModel
-    @State var nameProjectTextField: String = ""
+    
+    let project: ProjectModel
+    @State private var nameProjectTextField: String
+    @State private var showError: Bool = false
     @State private var characterLimitExceeded: Bool = false
     
+    
     @Environment(\.dismiss) var dismiss
+    
+    init(projectVM: ProjectViewModel, project: ProjectModel) {
+        self.projectVM = projectVM
+        self.project = project
+        _nameProjectTextField = State(initialValue: project.name ?? "")
+    }
     
     var body: some View {
         VStack(spacing: 10) {
             HStack {
-                Text("Adicionar Projeto")
+                Text("Renomear")
                     .font(.title)
                     .bold()
                     .padding(.top)
@@ -30,8 +40,6 @@ struct AddProjectView: View {
                             .animation(.easeInOut, value: characterLimitExceeded)
                     )
                 
-                
-                
                 if characterLimitExceeded {
                     Text("Você atingiu o máximo de caracteres (20)")
                         .foregroundColor(.red)
@@ -48,11 +56,11 @@ struct AddProjectView: View {
                         characterLimitExceeded = true
                     }
                 } else {
-                    projectVM.addProject(name: nameProjectTextField, modelContext: modelContext)
+                    projectVM.updateProjectName(project: project, newName: nameProjectTextField, modelContext: modelContext)
                     dismiss()
                 }
             }, label: {
-                Text("Criar")
+                Text("Salvar")
                     .font(.headline)
                     .foregroundStyle(.white)
                     .frame(height: 55)
@@ -63,13 +71,11 @@ struct AddProjectView: View {
             .padding(.horizontal)
             .disabled(nameProjectTextField.isEmpty || characterLimitExceeded)
             
-            
             Spacer()
         }
         .padding()
         .background(Color(UIColor.systemGray6))
         .onChange(of: nameProjectTextField) { oldValue, newValue in
-            
             if newValue.count > 20 {
                 withAnimation {
                     characterLimitExceeded = true
@@ -83,6 +89,8 @@ struct AddProjectView: View {
     }
 }
 
+// Preview com um projeto de exemplo
 #Preview {
-    AddProjectView(projectVM: ProjectViewModel())
+    let previewProject = ProjectModel(name: "Projeto Teste")
+    return EditNomeProjectView(projectVM: ProjectViewModel(), project: previewProject)
 }

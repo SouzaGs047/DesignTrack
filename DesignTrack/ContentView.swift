@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  DesignTrack
+//  ContentView
 //
 //  Created by GUSTAVO SOUZA SANTANA on 11/02/25.
 //
@@ -18,9 +18,9 @@ struct ContentView: View {
     
     @State private var showDeleteAlert = false
     @State private var projectToDelete: ProjectModel?
+    @State private var projectToEdit: ProjectModel?
     
     var body: some View {
-        
         NavigationStack {
             VStack(spacing: 20) {
                 if projetos.isEmpty {
@@ -28,7 +28,7 @@ struct ContentView: View {
                         .foregroundStyle(.gray)
                         .padding(.horizontal, 30)
                         .multilineTextAlignment(.center)
-
+                    
                 } else {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
@@ -62,11 +62,16 @@ struct ContentView: View {
                                     } label: {
                                         Label("Excluir", systemImage: "trash")
                                     }
+                                    Button {
+                                        projectToEdit = project
+                                    } label: {
+                                        Label("Renomear", systemImage: "pencil")
+                                    }
+                                    .tint(.gray)
                                 }
                             }
                         }
                     }
-
                 }
             }
             .navigationTitle("Projetos")
@@ -81,12 +86,26 @@ struct ContentView: View {
                 Text("Tem certeza que deseja apagar este projeto? Esta ação não poderá ser desfeita.")
             }
             .toolbar {
-                Button("Criar projeto") {
-                    showAddProjectSheet.toggle()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    TermsButton()
+                        .padding(.trailing, 100.0)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Criar projeto") {
+                        showAddProjectSheet.toggle()
+                    }
                 }
             }
             .sheet(isPresented: $showAddProjectSheet) {
                 AddProjectView(projectVM: projectVM)
+                    .presentationDetents([.height(200)])
+
+            }
+            .sheet(item: $projectToEdit) { project in
+                EditNomeProjectView(projectVM: projectVM, project: project)
+                    .presentationDetents([.height(200)])
+
             }
         }
     }

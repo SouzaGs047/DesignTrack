@@ -52,6 +52,21 @@ class ProjectViewModel: ObservableObject {
             }
         }
     
+    func updateProjectName(
+            project: ProjectModel,
+            newName: String,
+            modelContext: ModelContext
+        ) {
+            project.name = newName
+            
+            do {
+                try modelContext.save()
+                print("Nome do projeto atualizado com sucesso!")
+            } catch {
+                print("Erro ao atualizar o nome do projeto: \(error)")
+            }
+        }
+    
     func deleteProject(project: ProjectModel, modelContext: ModelContext) {
         modelContext.delete(project)
         

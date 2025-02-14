@@ -15,6 +15,8 @@
 		AE4DE93E2D5E74720002C601 /* AddLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE93D2D5E74720002C601 /* AddLogView.swift */; };
 		AE4DE9402D5E8AFB0002C601 /* LogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */; };
 		AE4DE9422D5FC49E0002C601 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4DE9412D5FC49E0002C601 /* SplashScreenView.swift */; };
+		2E4E10B42D5E639B007B2219 /* UserTermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4E10B32D5E639B007B2219 /* UserTermView.swift */; };
+		2E6C69B32D5E7F3800A15BF1 /* EditNomeProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6C69B22D5E7F3800A15BF1 /* EditNomeProjectView.swift */; };
 		AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */; };
 		AE5B3DE92D5BE6C1000496F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */; };
 		AE5B3DED2D5BE6C1000496F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5B3DEC2D5BE6C1000496F7 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		AE4DE93D2D5E74720002C601 /* AddLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLogView.swift; sourceTree = "<group>"; };
 		AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetailView.swift; sourceTree = "<group>"; };
 		AE4DE9412D5FC49E0002C601 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		2E4E10B32D5E639B007B2219 /* UserTermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTermView.swift; sourceTree = "<group>"; };
+		2E6C69B22D5E7F3800A15BF1 /* EditNomeProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNomeProjectView.swift; sourceTree = "<group>"; };
 		AE5B3DE32D5BE6C1000496F7 /* DesignTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5B3DE62D5BE6C1000496F7 /* DesignTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTrackApp.swift; sourceTree = "<group>"; };
 		AE5B3DE82D5BE6C1000496F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				AE5B3E0F2D5D1A2A000496F7 /* ProjectView.swift */,
 				AE5B3E112D5D1AF3000496F7 /* AddProjectView.swift */,
+				2E6C69B22D5E7F3800A15BF1 /* EditNomeProjectView.swift */,
 				AE5B3E132D5D2064000496F7 /* EditProjectView.swift */,
 				AE5B3E152D5D3B2A000496F7 /* BrandingView.swift */,
 				AE5B3E172D5D3B9C000496F7 /* ColorPickerView.swift */,
@@ -150,6 +155,7 @@
 				AE4DE93D2D5E74720002C601 /* AddLogView.swift */,
 				AE4DE93F2D5E8AFB0002C601 /* LogDetailView.swift */,
 				AE4DE9412D5FC49E0002C601 /* SplashScreenView.swift */,
+				2E4E10B32D5E639B007B2219 /* UserTermView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +251,7 @@
 				AE4DE9382D5E68280002C601 /* FontPickerView.swift in Sources */,
 				AE4DE9362D5E66AC0002C601 /* FontViewModel.swift in Sources */,
 				AE4DE93C2D5E6F1C0002C601 /* LogViewModel.swift in Sources */,
+				2E6C69B32D5E7F3800A15BF1 /* EditNomeProjectView.swift in Sources */,
 				AE5B3E102D5D1A2A000496F7 /* ProjectView.swift in Sources */,
 				AE5B3E0A2D5BE8CC000496F7 /* ColorModel.swift in Sources */,
 				AE4DE93A2D5E6E870002C601 /* LogProjectView.swift in Sources */,
@@ -255,6 +262,7 @@
 				AE5B3DE72D5BE6C1000496F7 /* DesignTrackApp.swift in Sources */,
 				AE5B3E182D5D3B9C000496F7 /* ColorPickerView.swift in Sources */,
 				AE5B3E142D5D2064000496F7 /* EditProjectView.swift in Sources */,
+				2E4E10B42D5E639B007B2219 /* UserTermView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
