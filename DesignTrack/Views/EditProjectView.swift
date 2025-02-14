@@ -37,12 +37,11 @@ struct EditProjectView: View {
                 // Utiliza o PhotosPicker diretamente para selecionar a imagem
                 PhotosPicker(
                     selection: $selectedItems,
-                    maxSelectionCount: 1,    // Se deseja apenas uma imagem, ou 0 para ilimitado
+                    maxSelectionCount: 1,
                     matching: .images
                 ) {
-                    ImageView(selectedImages: $selectedImages)
-                }
-                .disabled(!isEditing)
+                    ImageView(selectedImages: $selectedImages, isEditing: isEditing) // Passa o estado isEditing
+                }                .disabled(!isEditing)
                 .onChange(of: selectedItems) { newItems in
                     // Se desejar substituir a imagem atual, limpe as anteriores:
                     selectedImages.removeAll()
@@ -67,21 +66,28 @@ struct EditProjectView: View {
                     
                     Spacer()
                     
-                    Menu {
-                        ForEach(projectTypes, id: \.self) { type in
-                            Button(action: { projectVM.type = type }) {
-                                Text(type)
+                    if isEditing {
+                        // Mostra o seletor de tipo apenas no modo de edição
+                        Menu {
+                            ForEach(projectTypes, id: \.self) { type in
+                                Button(action: { projectVM.type = type }) {
+                                    Text(type)
+                                }
                             }
+                        } label: {
+                            HStack {
+                                Text(projectVM.type.isEmpty ? "Selecione um tipo" : projectVM.type)
+                                    .foregroundColor(projectVM.type.isEmpty ? .gray : .primary)
+                                Image(systemName: "chevron.down")
+                            }
+                            .padding()
                         }
-                    } label: {
-                        HStack {
-                            Text(projectVM.type.isEmpty ? "Selecione um tipo" : projectVM.type)
-                                .foregroundColor(projectVM.type.isEmpty ? .gray : .primary)
-                            Image(systemName: "chevron.down")
-                        }
-                        .padding()
+                    } else {
+                        // No modo de visualização, mostra apenas o tipo selecionado (ou nada, se não houver)
+                        Text(projectVM.type.isEmpty ? "" : projectVM.type)
+                            .foregroundColor(.primary)
+                            .padding()
                     }
-                    .disabled(!isEditing)
                 }
                 .background(RoundedRectangle(cornerRadius: 15).stroke(.gray, lineWidth: 1))
                 
@@ -159,7 +165,6 @@ struct EditProjectView: View {
             .padding()
         }
         .onAppear {
-            // Popula o view model com os dados atuais do projeto
             projectVM.type = currentProject.type ?? ""
             projectVM.objective = currentProject.objective ?? ""
             projectVM.startDate = currentProject.startDate ?? Date()
@@ -171,7 +176,6 @@ struct EditProjectView: View {
         }
         .navigationBarItems(trailing: Button(action: {
             if isEditing {
-                // Ao clicar em "Salvar", converte a imagem e atualiza o projeto
                 var imageData: Data? = nil
                 if let firstImage = selectedImages.first {
                     imageData = firstImage.jpegData(compressionQuality: 1.0)
@@ -187,7 +191,6 @@ struct EditProjectView: View {
                     modelContext: modelContext
                 )
             }
-            // Alterna entre os modos "Editar" e "Visualizar"
             isEditing.toggle()
         }) {
             Text(isEditing ? "Salvar" : "Editar")
@@ -199,6 +202,7 @@ struct EditProjectView: View {
 
 struct ImageView: View {
     @Binding var selectedImages: [UIImage]
+    var isEditing: Bool
     
     var body: some View {
         ZStack {
@@ -215,13 +219,16 @@ struct ImageView: View {
                     .foregroundStyle(.gray)
                     .frame(width: 200, height: 200)
                 
-                Text("Clique para adicionar uma foto")
-                    .foregroundStyle(.white)
-                    .font(.caption)
-                    .bold()
-                    .padding(5)
-                    .background(Color.black.opacity(0.6))
-                    .cornerRadius(5)
+    
+                if isEditing {
+                    Text("Clique para adicionar uma foto")
+                        .foregroundStyle(.white)
+                        .font(.caption)
+                        .bold()
+                        .padding(5)
+                        .background(Color.black.opacity(0.6))
+                        .cornerRadius(5)
+                }
             }
         }
     }
