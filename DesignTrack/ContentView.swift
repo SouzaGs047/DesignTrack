@@ -4,6 +4,7 @@
 //
 //  Created by GUSTAVO SOUZA SANTANA on 11/02/25.
 //
+// GitHub: https://github.com/SouzaGs047/DesignTrack
 
 import SwiftUI
 import SwiftData

@@ -10,7 +10,8 @@ import SwiftData
 
 struct LogProjectView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query var logs: [LogModel]
+    @Query(sort: \LogModel.date, order: .reverse) var logs: [LogModel]
+
     
     var currentProject: ProjectModel
     
@@ -35,7 +36,7 @@ struct LogProjectView: View {
             Calendar.current.startOfDay(for: log.date)
         }
         return grouped.map { (key, value) in
-            (date: key, logs: value)
+            (date: key, logs: value.sorted { $0.date > $1.date })
         }
         .sorted { $0.date > $1.date }
     }
@@ -118,3 +119,5 @@ struct LogProjectView: View {
         return formatter.string(from: date)
     }
 }
+
+

@@ -20,7 +20,7 @@ struct TermsButton: View {
 struct TermsSheetView: View {
     @Environment(\.dismiss) var dismiss
     
-    // Estados para controlar a expansão dos DisclosureGroups
+
     @State private var toggleStates = ToggleStates()
     @State private var termsExpanded: Bool = false
     @State private var privacyExpanded: Bool = false
@@ -30,7 +30,7 @@ struct TermsSheetView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     VStack {
-                        Image("DesignTrack") // Substitua pelo nome da sua imagem
+                        Image("DesignTrack")
                             .resizable()
                             .scaledToFill()
                         Text("""
@@ -89,7 +89,7 @@ struct TermsSheetView: View {
                     }
                     .padding(.bottom, 10)
                     
-                    // DisclosureGroup para a Política de Privacidade
+                   
                     DisclosureGroup("Política de Privacidade", isExpanded: $privacyExpanded) {
                         Text("""
                         No Design Track, prezamos pela honestidade, segurança e transparência em relação aos nossos usuários. Esta Política de Privacidade descreve como coletamos, usamos e protegemos suas informações ao utilizar o aplicativo Design Track. Ao usar o Design Track, você concorda com a coleta e uso de informações conforme descrito nesta política. Se você não concorda com os termos, recomendamos que não utilize o aplicativo.
@@ -118,13 +118,13 @@ struct TermsSheetView: View {
     }
 }
 
-// Estrutura para controlar os estados dos toggles (se necessário)
+
 struct ToggleStates {
     var oneIsOn: Bool = false
     var twoIsOn: Bool = true
 }
 
-// Preview para visualização no Canvas
+
 struct TermsButton_Previews: PreviewProvider {
     static var previews: some View {
         TermsSheetView()

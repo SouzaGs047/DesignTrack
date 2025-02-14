@@ -5,18 +5,15 @@
 //  Created by GUSTAVO SOUZA SANTANA on 13/02/25.
 //
 
-//
-//  AddLogView.swift
-//  DesignTrack
-//
-//  Created by GUSTAVO SOUZA SANTANA on 13/02/25.
-//
+
 
 import SwiftUI
 import PhotosUI
 import SwiftData
 
 struct AddLogView: View {
+    
+    
     @Environment(\.modelContext) private var modelContext
     @StateObject var logVM = LogViewModel()
     var currentProject: ProjectModel

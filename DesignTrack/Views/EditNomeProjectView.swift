@@ -89,8 +89,3 @@ struct EditNomeProjectView: View {
     }
 }
 
-// Preview com um projeto de exemplo
-#Preview {
-    let previewProject = ProjectModel(name: "Projeto Teste")
-    return EditNomeProjectView(projectVM: ProjectViewModel(), project: previewProject)
-}
