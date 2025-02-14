@@ -17,7 +17,7 @@ class ProjectViewModel: ObservableObject {
         @Published var finalDate: Date = Date()
         
     func addProject(name: String, modelContext: ModelContext) {
-        let newProject = ProjectModel()
+        let newProject = ProjectModel(name: name, startDate: Date())
         newProject.name = name
         
         modelContext.insert(newProject)
